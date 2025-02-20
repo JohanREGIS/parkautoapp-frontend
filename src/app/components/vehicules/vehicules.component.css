@@ -1,0 +1,189 @@
+/*button{
+    margin: auto;
+    background-color: white;
+    color: #7896c5;
+    border: 1px solid #7896c5;
+    border-radius: 3em;
+    font-size: auto;
+
+}
+
+button:hover{
+    margin: auto;
+    background-color: #7896c5;
+    color: white;
+    border: 1px solid #7896c5;
+}
+
+
+.fav{
+    margin: auto;
+    background-color: white;
+    color: #bfa65f;
+    border: 1px solid #bfa65f;
+}
+.fav:hover{
+    margin: auto;
+    background-color: #bfa65f;
+    color: white;
+    border: 1px solid #bfa65f;
+}
+
+
+.book:hover{
+    margin: auto;
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+}
+
+.book{
+    margin: auto;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+}
+
+.card-top{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width:0;
+    word-wrap: break-word;
+    background: white;
+    background-clip: border-box;
+    border: 1px solid black;
+    border-radius: .25rem;
+
+}
+
+
+
+.item{
+    margin: 0px 5em;
+    text-align:  center;
+}
+
+.item a:hover {
+    color:blue
+}
+
+.card {
+    padding: 1.5em;
+}
+
+.card img {
+    max-width:100%;
+    max-height:100%;
+    margin-bottom: 1.5em;
+    transition: 0.3s ease-in-out;
+}
+
+.card img:hover {
+    transition: 0.3s ease-in-out;
+    transform: scale(1.1);
+}
+
+.card{
+    margin: 1em;
+
+}
+
+/---Media Queries --/
+ bigger laptops /
+@media only screen and (min-width: 1024px) {
+    .container{
+        max-width:95%;
+     }
+     .cart-top{
+        max-width:75%;
+
+     }
+
+ }
+/ Desktops and laptops ----------- /
+@media only screen and (min-width: 850px) and (max-width: 1024px) {
+}
+
+
+/ iPads (portrait and landscape) ----------- /
+@media only screen and (min-width: 550px) and (max-width: 800px) {
+}
+/ mobiles (landscape and portrait)
+@media only screen and (min-width: 320px) and (max-width: 500px) {
+}*/
+
+/* Conteneur principal */
+.container {
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 1200px;
+    background-color: #f8f9fa; /* Couleur de fond légère */
+    font-family: Arial, sans-serif;
+}
+
+/* En-tête */
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Style pour les cartes */
+.card {
+    width: 18rem; /* Taille standard des cartes */
+    margin: 15px; /* Espacement entre les cartes */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Pour éviter les dépassements */
+    background-color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Effet de soulèvement au survol */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Image de la carte */
+.card img {
+    width: 100%; /* Assure que l'image prend toute la largeur */
+    height: 200px; /* Hauteur fixe */
+    object-fit: cover; /* Ajuste l'image sans déformation */
+    border-bottom: 1px solid #ddd;
+}
+
+/* Contenu de la carte */
+.card-body {
+    padding: 15px;
+    text-align: center;
+}
+
+.card-body h5 {
+    margin: 5px 0;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+/* Organisation des cartes */
+.row {
+    display: flex;
+    flex-wrap: wrap; /* Passe en responsive */
+    justify-content: center;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #e3f2fd;
+    height: 60px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+/* Responsive pour écrans plus petits */
+@media (max-width: 768px) {
+    .card {
+        width: 100%; /* Les cartes prennent toute la largeur */
+    }
+}

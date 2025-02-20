@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="container">
+        <nav class="navbar navbar-light bg-light"></nav>
+
+        <h2>Liste des véhicules</h2>
+        <div class="container container-fluid mt-3">
+            <div class="container d-flex">
+                <div class="row justify-content-center"> 
+                    <ng-container *ngFor="let v of vehicules">
+                        <div class="card" style="width:18rem">
+                            <img src="http://localhost:8085/images/{{v.imageVehicule}}" class="card-img-top" alt="image">
+                            <div class="card-body">
+                                <div class="card-text"><h5>Immatriculation : {{v.matricule}}</h5></div>
+                                <div class="card-text"><h5>Année du model : {{v.anneeModel}}</h5></div>
+                                <div class="card-text"><h5>Prix : {{v.prix}}</h5></div>
+                                <div class="card-text"><h5>Descriptif : {{v.descriptif}}</h5></div>
+                                <div class="justify-content-center" style="text-align: center;">
+                                    <button class="btn btn-primary fav m-1 md-raised" (click)="actionAddToCart(v)">Ajouter au panier</button>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

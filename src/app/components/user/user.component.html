@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row mb-2 mt-2 text-center">
+        <div class="col-md-4">
+            <h5> User Management Dashboard </h5>
+            <small>Users</small>
+        </div>
+    </div>
+</div>
+<!-- Nav bar -->
+<nav class="navbar navbar-expand-md breadcrumb">
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="nav nav-pills">
+            <a href="#users" class="nav-item nav-link active ml-1" data-toggle="tab">
+                <i class="fa fa-users"></i>
+                Users
+            </a>
+            <a href="#reset-password" class="nav-item nav-link ml-3" data-toggle="tab">
+                <i class="fa fa-cogs"></i>
+                Settings
+            </a>
+            <a href="#profile" class="nav-item nav-link mr-3" data-toggle="tab">
+                <i class="fa fa-user"></i>
+                Welcome, User
+            </a>
+        </div>
+    </div>
+</nav>
+
+<button class="button button-primary btn-theme" (click)="logOut()">
+    Log Out
+</button>
