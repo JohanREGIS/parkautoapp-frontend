@@ -2,7 +2,7 @@
     <div class="row mb-2 mt-2 text-center">
         <div class="col-md-4">
             <h5> User Management Dashboard </h5>
-            <small>Users</small>
+            <small *ngIf="titleAction$ | async as title">{{title}}</small>
         </div>
     </div>
 </div>
@@ -10,21 +10,81 @@
 <nav class="navbar navbar-expand-md breadcrumb">
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="nav nav-pills">
-            <a href="#users" class="nav-item nav-link active ml-1" data-toggle="tab">
+            <a href="#users" class="nav-item nav-link active ml-1" (click)="changeTitle('Users')" data-toggle="tab">
                 <i class="fa fa-users"></i>
                 Users
             </a>
-            <a href="#reset-password" class="nav-item nav-link ml-3" data-toggle="tab">
+            <a href="#reset-password" class="nav-item nav-link ml-3" (click)="changeTitle('Settings')" data-toggle="tab">
                 <i class="fa fa-cogs"></i>
                 Settings
             </a>
-            <a href="#profile" class="nav-item nav-link mr-3" data-toggle="tab">
+            <a href="#profile" class="nav-item nav-link mr-3" (click)="changeTitle('Profile')" data-toggle="tab">
                 <i class="fa fa-user"></i>
                 Welcome, User
             </a>
         </div>
     </div>
 </nav>
+
+<!-- Main Content -->
+<div class="tab-content mt-3" id="myTabContent">
+    <!-- User Table -->
+     <div class="tab-pane fade show active" id="users">
+        <div class="mb-3 float-right">
+            <div class="btn-group mr-2">
+                <form action="" class="form-inline my-2 my-lg-0 justify-content-center">
+                    <input type="search" class="form-control mr-sm-2" name="searchFileName" placeholder="search users...">
+                </form>
+                <button type="button" class="btn btn-info" data-toggle="model" data-target="#addUserModel">
+                    <i class="fa fa-plus"></i>
+                    New User
+                </button>
+            </div>
+            <div class="btn-group">
+                <button type="button" (click)="getUsers(true)" class="btn btn-info">
+                    <i *ngIf="refreshing" class="fas fa-sync fa-spin"></i>
+                    <i *ngIf="!refreshing" class="fas fa-sync"></i>
+                </button>
+            </div>
+        </div>
+        <table class="table table-hover">
+            <thead class="table-borderless">
+                <tr class="text-center">
+                    <th>Photo</th>
+                    <th>User ID</th>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let appUser of users">
+                <tr class="text-center">
+                    <td><img src="{{appUser?.profileImageURL}}" alt="" height="40" width="40" class="rounded-circle img-fluid img-thumbnail"></td>
+                    <td>{{appUser?.userId}}</td>
+                    <td>{{appUser?.firstname}}</td>
+                    <td>{{appUser?.lastname}}</td>
+                    <td>{{appUser?.username}}</td>
+                    <td>{{appUser?.email}}</td>
+                    <td>
+                        <span [hidden]="!appUser?.active" class="badge badge-success">Active</span>
+                        <span [hidden]="appUser?.active" class="badge badge-danger">Inactive</span>
+                    </td>
+                </tr>
+            </tbody>
+            <button [hidden]="true" type="button" id="openUserInfo" data-toggle="model" data-target="#viewUserModel">
+
+            </button>
+            <button [hidden]="true" type="button" id="openUserEdit" data-toggle="model" data-target="#editUserModel">
+
+            </button>
+        </table>
+     </div>
+</div>
+
+
 
 <button class="button button-primary btn-theme" (click)="logOut()">
     Log Out
