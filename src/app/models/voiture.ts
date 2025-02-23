@@ -7,8 +7,8 @@ export class Voiture extends Vehicule {
     immatriculation:string;
     media:string;
 
-    constructor(matricule:number, anneeModel:number, prix:number, imageVehicule:string, descriptif:string, nbPorte:number, poidsTotal:number, categorie:string, immatriculation:string, media:string) {
-        super(matricule, anneeModel, prix, imageVehicule, descriptif);
+    constructor(matricule:number, anneeModel:number, prix:number, imageVehicule:string, descriptif:string, stockQty:number, nbPorte:number, poidsTotal:number, categorie:string, immatriculation:string, media:string) {
+        super(matricule, anneeModel, prix, imageVehicule, descriptif, stockQty);
         this.nbPorte = nbPorte;
         this.poidsTotal = poidsTotal;
         this.categorie = categorie;
