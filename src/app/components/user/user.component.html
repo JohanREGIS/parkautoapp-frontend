@@ -69,8 +69,8 @@
                     <td>{{appUser?.username}}</td>
                     <td>{{appUser?.email}}</td>
                     <td>
-                        <span [hidden]="!appUser?.active" class="badge badge-success">Active</span>
-                        <span [hidden]="appUser?.active" class="badge badge-danger">Inactive</span>
+                        <span [hidden]="appUser?.active" class="badge badge-success">Active</span>
+                        <span [hidden]="!appUser?.active" class="badge badge-danger">Inactive</span>
                     </td>
                 </tr>
             </tbody>
