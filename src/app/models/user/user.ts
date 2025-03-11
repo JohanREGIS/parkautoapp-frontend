@@ -1,6 +1,6 @@
 export class User {
 
-    public uid:number;  // ID de la bdd
+    public id:number;  // ID de la bdd
     public userId:string;   // ID de l'utilisateur
     public firstname:string;
     public lastname:string;
@@ -18,7 +18,7 @@ export class User {
     public notLocked:boolean;
 
     constructor() {
-        this.uid = 0;
+        this.id = 0;
         this.userId = '';
         this.firstname = '';
         this.lastname = '';

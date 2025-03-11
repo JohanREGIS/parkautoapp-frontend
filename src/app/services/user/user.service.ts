@@ -9,7 +9,7 @@ import { CustomHttpResponse } from '../../models/custom-http-response';
   providedIn: 'root'
 })
 export class UserService {
-
+  
   private host = AppSettings.APP_URL;
 
   constructor(private http:HttpClient) { }
@@ -43,4 +43,22 @@ export class UserService {
       return [];
     }
   }
+
+  createUserFormData(loggedInUsername: string, user: User, profileImage: File) : FormData {
+    
+    const formData = new FormData();
+
+    formData.append('CurrentUsername', loggedInUsername);
+    formData.append('firstname', user.firstname);
+    formData.append('lastname', user.lastname);
+    formData.append('username', user.username);
+    formData.append('email', user.email);
+    formData.append('role', user.role);
+    formData.append('profileImage', profileImage);
+    formData.append('isActive', JSON.stringify(user.active));
+    formData.append('isNotLocked', JSON.stringify(user.notLocked));
+
+    return formData;
+  }
+
 }

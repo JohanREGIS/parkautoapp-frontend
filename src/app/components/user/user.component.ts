@@ -7,6 +7,8 @@ import { UserService } from '../../services/user/user.service';
 import { NotificationService } from '../../services/notification/notification.service';
 import { NotificationType } from '../../enum/notification-type.enum';
 import { HttpErrorResponse } from '@angular/common/http';
+import { CustomHttpResponse } from '../../models/custom-http-response';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-user',
@@ -22,7 +24,9 @@ export class UserComponent implements OnInit {
   private subscriptions:Subscription[] = [];
   public users:User[] = [];
   public refreshing:boolean = false;
-
+  declare public selectedUser: User | null;
+  public fileName !: string;
+  public profileImage !: File;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -62,7 +66,7 @@ export class UserComponent implements OnInit {
         (errorResponse:HttpErrorResponse) => {  // Error Response
                   this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
                   this.refreshing = false;
-                }
+        }
       })
     );
   }
@@ -74,4 +78,72 @@ export class UserComponent implements OnInit {
       this.notificationService.notify(notificationType, "AN ERROR OCCURED, PLEASE TRY AGAIN");
     }
   }
+
+  onSelectUser(selectedUser:User):void {
+    this.selectedUser = selectedUser;
+    //document.getElementById('openUserInfo');
+    this.clickButton('openUserInfo');
+  }
+
+  onEditUser(_t50: User) {
+    throw new Error('Method not implemented.');
+  }
+
+  onDeleteUser(userId: number):void {
+    console.log("ID : " + userId);
+    this.subscriptions.push(
+      this.userService.deleteUser(userId).subscribe({
+        next:
+        (response:CustomHttpResponse) => {
+          this.sendNotification(NotificationType.SUCCESS, response.message);
+          this.getUsers(true);
+        },
+        error:
+        (errorResponse:HttpErrorResponse) => {  // Error Response
+          this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
+        }
+      })
+    );
+  }
+
+  onAddNewUser(userForm: NgForm):void {
+    
+    const formData = this.userService.createUserFormData(null as any, userForm.value, this.profileImage as any);
+
+    this.subscriptions.push(
+      this.userService.addUser(formData).subscribe({
+        next:
+        (response:User) => {
+          this.clickButton('new-user-close');
+          this.getUsers(false);
+
+          // Vide les champs et le formulaire
+          this.fileName = null as any;
+          this.profileImage = null as any;
+          userForm.reset();
+          this.sendNotification(NotificationType.SUCCESS, `${response.firstname} ${response.lastname} added successfully`)
+        },
+        error:
+        (errorResponse:HttpErrorResponse) => {  // Error Response
+          this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
+          this.profileImage = null as any;
+        }
+      })
+    );
+  }
+
+  onProfileImageChange($event: Event) {
+    throw new Error('Method not implemented.');
+  }
+
+  saveNewUser():void {
+    
+    this.clickButton('new-user-save');
+
+  }
+
+  private clickButton(buttonId: string):void {
+    document.getElementById(buttonId)?.click();
+  }
+
 }
